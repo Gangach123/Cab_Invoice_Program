@@ -8,15 +8,19 @@ namespace Cab_Invoice_Generator_Testing
     {
         public CabInvoiceGenerator cabInvoiceGenerator;
         List<Enhanced_Invoice> enhancedInvoiceList;
-        Ride[] multipleRides;
-        
-        
+        Ride_Repository ride_Repository;
+        List<Ride> multipleRides1;
+        List<Ride> multipleRides2;
+
+
         //cost per km = 10 & per min = 1
         [SetUp]
         public void Setup()
         {
             cabInvoiceGenerator = new CabInvoiceGenerator();
-            multipleRides = new Ride[] { new Ride(2, 5), new Ride(3, 10), new Ride(0.1, 0.5) };
+            multipleRides1 = new List<Ride> { new Ride(2, 10), new Ride(3, 10), new Ride(0.1, 0.5), new Ride(0.1, 0.5) };
+            multipleRides2 = new List<Ride> { new Ride(0.1, 0.5), new Ride(0.1, 0.5) };
+            ride_Repository = new Ride_Repository();
         }
         //Given distance in kmand time in minshould generate fair
         [Test]
@@ -38,6 +42,36 @@ namespace Cab_Invoice_Generator_Testing
             Assert.AreEqual(80, totalFare);
             Assert.AreEqual(20, avgFare);
             Assert.AreEqual(4, noOfRides);
+        }
+        [Test]
+        public void GivenUserIDInInvoice_GetsListofRides_ReturnAverageFare()
+        {
+            ride_Repository.AddRidesInRepo("Viney111", multipleRides1);
+            ride_Repository.AddRidesInRepo("Yash111", multipleRides2);
+            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("Viney111");
+            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("Yash111");
+            Assert.AreEqual(20, invoiceDetailsFor_Viney.averageFarePerRide);
+            Assert.AreEqual(5, invoiceDetailsFor_Yash.averageFarePerRide);
+        }
+        [Test]
+        public void GivenUserIDInInvoice_GetsListofRides_ReturnTotalFare()
+        {
+            ride_Repository.AddRidesInRepo("Viney111", multipleRides1);
+            ride_Repository.AddRidesInRepo("Yash111", multipleRides2);
+            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("Viney111");
+            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("Yash111");
+            Assert.AreEqual(80, invoiceDetailsFor_Viney.totalFare);
+            Assert.AreEqual(10, invoiceDetailsFor_Yash.totalFare);
+        }
+        [Test]
+        public void GivenUserIDInInvoice_GetsListofRides_ReturnNumberOfRides()
+        {
+            ride_Repository.AddRidesInRepo("Viney111", multipleRides1);
+            ride_Repository.AddRidesInRepo("Yash111", multipleRides2);
+            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("Viney111");
+            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("Yash111");
+            Assert.AreEqual(4, invoiceDetailsFor_Viney.totalNumberOfRides);
+            Assert.AreEqual(2, invoiceDetailsFor_Yash.totalNumberOfRides);
         }
     }
 }
