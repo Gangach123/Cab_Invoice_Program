@@ -29,7 +29,14 @@ namespace Cab_Invoice_Program
             }
             return multipleRideFare;
         }
-
+        public List<Enhanced_Invoice> GetInvoiceDetailsOfRides(Ride[] rides)
+        {
+            List<Enhanced_Invoice> invoiceDetailsList = new List<Enhanced_Invoice>();
+            Enhanced_Invoice invoiceDetails = new Enhanced_Invoice();
+            invoiceDetails.GettingDetailsOfInvoiceInObject(rides);
+            invoiceDetailsList.Add(invoiceDetails);
+            return invoiceDetailsList;
+        }
 
     }
 }
