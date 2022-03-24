@@ -20,7 +20,16 @@ namespace Cab_Invoice_Program
             }
             return MINIMUM_FARE;
         }
+        public double MultipleRide(Ride[] rides)
+        {
+            double multipleRideFare = 0;
+            foreach (Ride ride in rides)
+            {
+                multipleRideFare += CalcuteFair(ride.distance, ride.time);
+            }
+            return multipleRideFare;
+        }
 
-        
+
     }
 }

@@ -6,11 +6,15 @@ namespace Cab_Invoice_Generator_Testing
     public class Tests
     {
         public CabInvoiceGenerator cabInvoiceGenerator;
+        Ride[] multipleRides;
+        
+        
         //cost per km = 10 & per min = 1
         [SetUp]
         public void Setup()
         {
             cabInvoiceGenerator = new CabInvoiceGenerator();
+            multipleRides = new Ride[] { new Ride(2, 5), new Ride(3, 10), new Ride(0.1, 0.5) };
         }
         //Given distance in kmand time in minshould generate fair
         [Test]

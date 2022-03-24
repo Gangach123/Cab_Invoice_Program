@@ -6,7 +6,7 @@ namespace Cab_Invoice
         public static void Main()
         {
             Console.WriteLine("Welcome to Cab Invoice Generator program.");
-
+            
         }
     }
 }
