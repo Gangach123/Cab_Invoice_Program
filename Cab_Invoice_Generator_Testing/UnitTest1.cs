@@ -46,30 +46,30 @@ namespace Cab_Invoice_Generator_Testing
         [Test]
         public void GivenUserIDInInvoice_GetsListofRides_ReturnAverageFare()
         {
-            ride_Repository.AddRidesInRepo("Viney111", multipleRides1);
-            ride_Repository.AddRidesInRepo("Yash111", multipleRides2);
-            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("Viney111");
-            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("Yash111");
+            ride_Repository.AddRidesInRepo("GANGA123", multipleRides1);
+            ride_Repository.AddRidesInRepo("TEJA123", multipleRides2);
+            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("GANGA123");
+            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("TEJA123");
             Assert.AreEqual(20, invoiceDetailsFor_Viney.averageFarePerRide);
             Assert.AreEqual(5, invoiceDetailsFor_Yash.averageFarePerRide);
         }
         [Test]
         public void GivenUserIDInInvoice_GetsListofRides_ReturnTotalFare()
         {
-            ride_Repository.AddRidesInRepo("Viney111", multipleRides1);
-            ride_Repository.AddRidesInRepo("Yash111", multipleRides2);
-            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("Viney111");
-            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("Yash111");
+            ride_Repository.AddRidesInRepo("GANGA123", multipleRides1);
+            ride_Repository.AddRidesInRepo("TEJA123", multipleRides2);
+            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("GANGA123");
+            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("TEJA123");
             Assert.AreEqual(80, invoiceDetailsFor_Viney.totalFare);
             Assert.AreEqual(10, invoiceDetailsFor_Yash.totalFare);
         }
         [Test]
         public void GivenUserIDInInvoice_GetsListofRides_ReturnNumberOfRides()
         {
-            ride_Repository.AddRidesInRepo("Viney111", multipleRides1);
-            ride_Repository.AddRidesInRepo("Yash111", multipleRides2);
-            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("Viney111");
-            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("Yash111");
+            ride_Repository.AddRidesInRepo("GANGA123", multipleRides1);
+            ride_Repository.AddRidesInRepo("TEJA123", multipleRides2);
+            var invoiceDetailsFor_Viney = cabInvoiceGenerator.Get_Invoice_By_UserId("GANGA123");
+            var invoiceDetailsFor_Yash = cabInvoiceGenerator.Get_Invoice_By_UserId("TEJA123");
             Assert.AreEqual(4, invoiceDetailsFor_Viney.totalNumberOfRides);
             Assert.AreEqual(2, invoiceDetailsFor_Yash.totalNumberOfRides);
         }
