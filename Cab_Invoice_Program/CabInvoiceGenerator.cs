@@ -11,7 +11,7 @@ namespace Cab_Invoice_Program
         const int COST_PER_KM = 10;
         const int COST_PER_MINUTE = 1;
         const int MINIMUM_FARE = 5;
-        public double CalcuteFair(double distance, double time)
+        public double CalcuteFair(TypeOfRide ride, double distance, double time)
         {
             double Fare = distance * COST_PER_KM + time * COST_PER_MINUTE;
             if (Fare > MINIMUM_FARE)
@@ -20,26 +20,26 @@ namespace Cab_Invoice_Program
             }
             return MINIMUM_FARE;
         }
-        public double MultipleRide(List<Ride> rides)
+        public double MultipleRide(TypeOfRide typeRides,List<Ride> rides)
         {
             double multipleRideFare = 0;
             foreach (Ride ride in rides)
             {
-                multipleRideFare += CalcuteFair(ride.distance, ride.time);
+                multipleRideFare += CalcuteFair(typeRides, ride.distance, ride.time);
             }
             return multipleRideFare;
         }
-        public Enhanced_Invoice GetInvoiceDetailsOfRides(List<Ride> rides)
+        public Enhanced_Invoice GetInvoiceDetailsOfRides(TypeOfRide typeRides,List<Ride> rides)
         {
             Enhanced_Invoice invoiceDetails = new Enhanced_Invoice();
-            invoiceDetails.Getting_Details_Of_Invoice_In_Object(rides);
+            invoiceDetails.Getting_Details_Of_Invoice_In_Object(typeRides, rides);
             return invoiceDetails;
         }
 
-        public Enhanced_Invoice Get_Invoice_By_UserId(string userId)
+        public Enhanced_Invoice Get_Invoice_By_UserId(TypeOfRide typeRides, string userId)
         {
             var userRideList = Ride_Repository.GetRideListByUserID(userId);
-            var invoiceDetailsByUserId = GetInvoiceDetailsOfRides(userRideList);
+            var invoiceDetailsByUserId = GetInvoiceDetailsOfRides(typeRides,userRideList);
             return invoiceDetailsByUserId;
         }
 
